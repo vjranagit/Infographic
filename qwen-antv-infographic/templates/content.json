@@ -1,0 +1,20 @@
+{
+  "title": "Short technical title",
+  "subtitle": "One sentence: what the system does and why",
+  "takeaway": "The one insight the picture proves",
+  "parts": [
+    {"id": "source", "label": "First part", "detail": "What this part does, decides or holds", "group": "Group A"},
+    {"id": "core", "label": "Second part", "detail": "What this part does, decides or holds", "group": "Group A"},
+    {"id": "check", "label": "Third part", "detail": "What this part does, decides or holds", "group": "Group B"},
+    {"id": "result", "label": "Fourth part", "detail": "What this part does, decides or holds", "group": "Group B"},
+    {"id": "shared", "label": "Fifth part", "detail": "What this part does, decides or holds", "group": "Group C"}
+  ],
+  "links": [
+    {"from": "source", "to": "core", "label": "feeds"},
+    {"from": "core", "to": "check", "label": "sends result"},
+    {"from": "check", "to": "result", "label": "if ok"},
+    {"from": "check", "to": "core", "label": "if not: redo"},
+    {"from": "shared", "to": "core", "label": "configures"},
+    {"from": "shared", "to": "check"}
+  ]
+}
