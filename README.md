@@ -195,3 +195,17 @@ If you have any suggestions, feel free to communicate with us on GitHub! Star �
 ## 📄 License
 
 This project is open source under the **MIT** license. See [LICENSE](./LICENSE) for details.
+
+## Qwen AntV Infographic
+
+This repository also includes `qwen-antv-infographic`, a weak-model wrapper for local LLMs tuned on qwen3.8-27b. It turns concise content into a checked relationship infographic using the AntV renderer in this repository. Maintained with Usman Mustafa branding.
+
+Install its local CPU-only dependencies with `qwen-antv-infographic/scripts/setup.sh`.
+
+Usage: “Use qwen-antv-infographic to make an infographic about [topic].”
+
+Best version: v3, critic overall score 6.2/10 (AI critic assessment, not a benchmark); score history v1 5.2, v2 5.8, v3 6.2.
+
+Example: [AutoCAD 2D drafting workflow](qwen-antv-infographic/examples/autocad-2d-drafting.png).
+
+The upstream project license applies: MIT. The wrapper and its changes are provided under the same license.
