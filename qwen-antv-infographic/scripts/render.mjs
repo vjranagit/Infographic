@@ -1,4 +1,4 @@
-// Serves the runtime dir with the sample's pinned Vite/AntV, saves each layout variant as PNG + whole-sheet SVG
+// Serves the runtime dir with its locally installed Vite/AntV dependencies and saves PNG + SVG variants.
 // (title, graph, takeaway and legend are all inside the one <svg>), prints metrics JSON.
 import { createServer } from 'vite';
 import { chromium } from 'playwright';
@@ -6,7 +6,7 @@ import { writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const root = resolve(process.argv[2]);
-const server = await createServer({ root, configFile: false, logLevel: 'error', server: { host: '127.0.0.1', port: 0 } });
+const server = await createServer({ root, configFile: false, logLevel: 'error', resolve: { alias: { '@antv/infographic': resolve(root, '../../node_modules/@antv/infographic/esm/index.js') } }, server: { host: '127.0.0.1', port: 0 } });
 await server.listen();
 const { port } = server.httpServer.address();
 const browser = await chromium.launch({ headless: true, executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE || undefined, args: ['--no-sandbox'] });
