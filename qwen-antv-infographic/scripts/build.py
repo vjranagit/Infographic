@@ -3,10 +3,7 @@ import json, os, pathlib, re, shutil, subprocess, sys
 
 HERE = pathlib.Path(__file__).resolve().parent
 SKILL = HERE.parent
-ROOT = SKILL.parent
 NODE_MODULES = SKILL / 'node_modules'
-CHROME = pathlib.Path(os.environ.get('PLAYWRIGHT_CHROMIUM_EXECUTABLE', '')) if os.environ.get('PLAYWRIGHT_CHROMIUM_EXECUTABLE') else None
-SAMPLE = ROOT
 PALETTE = ['#0D9488', '#D97706', '#2563EB', '#DC2626', '#7C3AED']
 PHONE_W, MIN_PHONE_TEXT = 390, 8.0  # smallest text, in px, when the PNG is shown 390 px wide
 # One source of truth for card size and fonts: page.js draws with these, and the char limits below derive from them.
@@ -147,7 +144,7 @@ def main():
     env = {k: v for k, v in os.environ.items() if k not in ('DISPLAY', 'WAYLAND_DISPLAY')}
     run = subprocess.run(['node', str(rt / 'render.mjs'), str(rt)], cwd=SKILL, env=env, capture_output=True, text=True)
     if run.returncode:
-        return fail([f'renderer failed: {(run.stderr or run.stdout).strip()[-400:]}'])
+        return fail([f'renderer failed: {(run.stderr or run.stdout).strip()[-4000:]}'])
     metrics = json.loads(run.stdout.strip().splitlines()[-1])
     # Prefer the variant with the fewest collisions, then the largest phone text (tall sheets count a bit smaller).
     score = lambda k: (len(metrics[k]['collisions']), -phone_px(metrics[k]) * min(1, 1.9 * metrics[k]['width'] / metrics[k]['height']))
